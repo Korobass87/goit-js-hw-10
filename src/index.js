@@ -32,7 +32,7 @@ function searchCountry() {
         let data = fetchCountries(dataSearch)
         data
         .then(data => {
-                console.log(data)
+                
                 if (data.status === 404) {
                     Notiflix.Notify.failure("Oops, there is no country with that name")
                     info.innerHTML = ''
