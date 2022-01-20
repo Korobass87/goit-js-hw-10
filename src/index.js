@@ -68,15 +68,15 @@ function markup(data) {
         listInput.innerHTML = ''
         
     } else {
+
         let leng = Object.values(data[0].languages).join(', ')
-        
-        
+                
         let infoMarkup = data.map(country => `<h2><img class="flag-name" src="${country.flags.svg}" alt="${country.name.common}">${country.name.official}</h2>
         <ul><li class="country-info-item"><span class="wrap">Capital: </span>${country.capital[0]}</li>
         <li class="country-info-item"><span class="wrap">Population: </span>${country.population}</li>
         <li class="country-info-item"><span class="wrap">Languages: </span>${leng}</li>
         </ul>`).join('')
-             
+            
             listInput.innerHTML = ''
             info.innerHTML = ''
             info.insertAdjacentHTML('beforeend', infoMarkup)
