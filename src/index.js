@@ -80,7 +80,5 @@ function markup(data) {
             listInput.innerHTML = ''
             info.innerHTML = ''
             info.insertAdjacentHTML('beforeend', infoMarkup)
-        
-
-    }
+            }
 }
