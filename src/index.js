@@ -8,6 +8,7 @@ Notiflix.Notify.init({
   // ...
 });
 import './css/styles.css';
+import fetchCountries from './fetchCountries'
 const debounce = require('lodash.debounce')
 const DEBOUNCE_DELAY = 300;
 const input = document.querySelector("#search-box")
@@ -25,26 +26,24 @@ input.addEventListener("input", debounce(searchCountry, DEBOUNCE_DELAY))
 function searchCountry() {
     let dataSearch = input.value.trim()
     
-    function onFetch() {
-        return fetch(`https:restcountries.com/v3.1/name/${dataSearch}?fields=capital,name,population,flags,languages`)
-    }
+    
 
     if (dataSearch) {
-        onFetch()
-            .then(d => {
-                
-                return d.json()
-            })
-            .then(data => {
+        let data = fetchCountries(dataSearch)
+        data
+        .then(data => {
+                console.log(data)
                 if (data.status === 404) {
                     Notiflix.Notify.failure("Oops, there is no country with that name")
                     info.innerHTML = ''
                     listInput.innerHTML = ''
                 } else {
-                    return markup(data)
+                    markup(data)
                 }
                 
             })
+        
+            
     } else {listInput.innerHTML = ''
             info.innerHTML = '' }
      
@@ -52,7 +51,7 @@ function searchCountry() {
 
 
 function markup(data) {
-    
+    console.log(data)
     if (data.length !== 1 && data.length < 11) {
      Notiflix.Notify.success(`Find ${data.length} matches`)   
      let  listMarkup =  data.map(country => `<li class="country-item">
@@ -77,7 +76,7 @@ function markup(data) {
         <li class="country-info-item"><span class="wrap">Population: </span>${country.population}</li>
         <li class="country-info-item"><span class="wrap">Languages: </span>${leng}</li>
         </ul>`).join('')
-        // let infoMarkup = data.map()     
+             
             listInput.innerHTML = ''
             info.innerHTML = ''
             info.insertAdjacentHTML('beforeend', infoMarkup)
