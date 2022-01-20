@@ -1,5 +1,5 @@
 export default function fetchCountries(name) {
-    return (fetch(`https:restcountries.com/v3.1/name/${name}?fields=capital,name,population,flags,languages`)
+    return (fetch(`https://restcountries.com/v3.1/name/${name}?fields=capital,name,population,flags,languages`)
             .then(d => {
                 
                 return d.json()

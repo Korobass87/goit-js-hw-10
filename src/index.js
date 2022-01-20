@@ -51,7 +51,7 @@ function searchCountry() {
 
 
 function markup(data) {
-    console.log(data)
+    
     if (data.length !== 1 && data.length < 11) {
      Notiflix.Notify.success(`Find ${data.length} matches`)   
      let  listMarkup =  data.map(country => `<li class="country-item">
